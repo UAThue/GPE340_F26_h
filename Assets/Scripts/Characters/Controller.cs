@@ -11,7 +11,7 @@ public abstract class Controller : MonoBehaviour
         pawn.controller = this;
     }
 
-    public virtual void UnPosess()
+    public virtual void UnPossess()
     {
         // Remove the links
         pawn.controller = null;

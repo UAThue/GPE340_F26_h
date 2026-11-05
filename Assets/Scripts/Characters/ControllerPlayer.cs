@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class ControllerPlayer : Controller
 {
+    public Camera viewCamera;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +33,39 @@ public class ControllerPlayer : Controller
 
         // Send the value into our Move as a 3D vector!
         pawn.Move(moveDirection3);
+
+        // Rotate Camera
+        RotateCamera();
+    }
+
+    protected virtual void RotateCamera()
+    {
+        // Create an object for our floor plane
+        Plane thePlane = new Plane(Vector3.up, pawn.transform.position);
+
+        // Create an object for our camera mouse ray
+        Ray theRay = new Ray();
+
+        // Get our mouse position
+        InputAction mousePositionAction = InputSystem.actions.FindAction("MousePosition");
+        Vector2 mousePosition = mousePositionAction.ReadValue<Vector2>();
+        theRay = viewCamera.ScreenPointToRay(mousePosition);
+
+        // Find the intersection between the Ray and the Plane
+        float distanceToIntersection; // Variable to hold distance down the ray that we collide
+        Vector3 hitPoint; // Variable to hold the point where we collide
+
+        // If the ray collides with the plane
+        if (thePlane.Raycast(theRay, out distanceToIntersection))
+        {
+            // Save the point down the ray
+            hitPoint = theRay.GetPoint(distanceToIntersection);
+
+            // Rotte towards that point
+            pawn.RotateToLookAt(hitPoint);            
+        }
+
+
     }
 
 }
