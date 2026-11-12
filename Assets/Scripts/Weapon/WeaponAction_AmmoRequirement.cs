@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class WeaponAction_AmmoRequirement : MonoBehaviour
+public class WeaponAction_AmmoRequirement : WeaponAction
 {
     public int currentAmmo;
     public int maxAmmo;
     public UnityEvent OnShoot;
     public UnityEvent OnOutOfAmmo;
-
 
     public void Reload()
     {

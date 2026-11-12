@@ -5,6 +5,7 @@ public class PawnHumanoid : Pawn
 {
     private Animator anim;
 
+
     public override void Move(Vector3 moveVector)
     {
         // Pass the values into the animator

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponAction_Shoot : MonoBehaviour
+public class WeaponAction_Shoot : WeaponAction
 {
     public void Shoot()
     {

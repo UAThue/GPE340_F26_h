@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class WeaponAction_RaycastShoot : MonoBehaviour
+public class WeaponAction_RaycastShoot : WeaponAction
 {
-    public float damageDone;
+
     public Transform firePoint;
     public float fireDistance;
     public GameObject laserPrefab;
@@ -10,12 +11,11 @@ public class WeaponAction_RaycastShoot : MonoBehaviour
     public float laserWidth = 0.1f;
     public Color laserColor = Color.green;
 
-
+    public UnityEvent OnShoot;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class WeaponAction_RaycastShoot : MonoBehaviour
         
     }
 
-    public void Shoot( )
+    public void Shoot()
     {
         // Create a variable to hold the laser's endpoint
         Vector3 laserEndpoint = firePoint.position + (firePoint.forward * fireDistance);
@@ -45,7 +45,7 @@ public class WeaponAction_RaycastShoot : MonoBehaviour
             if (otherHealth != null)
             {
                 // Do Damage
-                otherHealth.TakeDamage(damageDone); 
+                otherHealth.TakeDamage(weapon.damageDone);
             }
 
             // change the endpoint of the laser based on our hit
@@ -69,6 +69,8 @@ public class WeaponAction_RaycastShoot : MonoBehaviour
 
         // Tell it to self destruct after a certain time
         Destroy(laser, laserLifespan);
-    }
 
+        // Do what the designers have added
+        OnShoot.Invoke();
+    }
 }

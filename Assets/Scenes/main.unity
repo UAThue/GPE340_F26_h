@@ -1229,51 +1229,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1021355244
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1021355246}
-  - component: {fileID: 1021355245}
-  m_Layer: 0
-  m_Name: TEST-DELETEME!
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1021355245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021355244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3e8e777b200d7b4398bb5a5a1d4638b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestWeapon
-  weaponToTest: {fileID: 1911521662}
---- !u!4 &1021355246
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021355244}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.41502, y: -0.5, z: 0.20833}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140614902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,9 +1614,13 @@ GameObject:
   - component: {fileID: 1911521662}
   - component: {fileID: 1911521663}
   - component: {fileID: 1911521665}
-  - component: {fileID: 1911521667}
-  - component: {fileID: 1911521668}
   - component: {fileID: 1911521669}
+  - component: {fileID: 1911521667}
+  - component: {fileID: 1911521670}
+  - component: {fileID: 1911521671}
+  - component: {fileID: 1911521673}
+  - component: {fileID: 1911521672}
+  - component: {fileID: 1911521674}
   m_Layer: 0
   m_Name: AutoRayGun
   m_TagString: Untagged
@@ -1681,36 +1640,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8ad62a4ab73e1448e3b4c71b83de47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  OnTriggerPull:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1911521667}
-        m_TargetAssemblyTypeName: WeaponAction_AutomaticFire, Assembly-CSharp
-        m_MethodName: StartShooting
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnTriggerRelease:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1911521667}
-        m_TargetAssemblyTypeName: WeaponAction_AutomaticFire, Assembly-CSharp
-        m_MethodName: StopShooting
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  damageDone: 1
+  shotsPerSecond: 2
+  attacks:
+  - OnAttackStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1911521667}
+          m_TargetAssemblyTypeName: WeaponAction_AutomaticFire, Assembly-CSharp
+          m_MethodName: StartShooting
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnAttackEnd:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1911521667}
+          m_TargetAssemblyTypeName: WeaponAction_AutomaticFire, Assembly-CSharp
+          m_MethodName: StopShooting
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - OnAttackStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1911521672}
+          m_TargetAssemblyTypeName: WeaponAction_AmmoRequirement, Assembly-CSharp
+          m_MethodName: TryShoot
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnAttackEnd:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &1911521663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,14 +1809,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911521661}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.123, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.217, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 221788611}
   - {fileID: 978193797}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 570180498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1911521667
 MonoBehaviour:
@@ -1850,6 +1830,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931a098e41c57fa40857788e3487f813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponAction_AutomaticFire
+  weapon: {fileID: 0}
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1911521670}
+        m_TargetAssemblyTypeName: WeaponAction_LimitFireRate, Assembly-CSharp
+        m_MethodName: TryShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1911521669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911521661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d880c864194be884aac65cc426d89a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponAction_AmmoRequirement
+  weapon: {fileID: 0}
+  currentAmmo: 100
+  maxAmmo: 100
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1911521673}
+        m_TargetAssemblyTypeName: WeaponAction_RaycastShoot, Assembly-CSharp
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnOutOfAmmo:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1911521670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911521661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74541c3e262c574bbe9f9a1edadc131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponAction_LimitFireRate
+  weapon: {fileID: 0}
+  shotsPerSeconds: 2
   OnShoot:
     m_PersistentCalls:
       m_Calls:
@@ -1865,8 +1908,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  shotsPerSecond: 2
---- !u!114 &1911521668
+  OnFailShoot:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1911521671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1875,17 +1920,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 1911521661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15aedc557208e3d41981317b0e95da6c, type: 3}
+  m_Script: {fileID: 11500000, guid: b0e461704814e034d9143b628aa522ba, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponAction_RaycastShoot
-  damageDone: 0
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponAction_ParticleShoot
+  weapon: {fileID: 0}
+  bulletPrefab: {fileID: 7477590256802230062, guid: 0b73eceb5387de24698da757285c1ebd, type: 3}
+  shootForce: 500
+  bulletMaxLifespan: 3
   firePoint: {fileID: 978193797}
-  fireDistance: 5
-  laserPrefab: {fileID: 8740161466761690405, guid: 7249b914bc32f504a863531ab73d08fb, type: 3}
-  laserLifespan: 0.1
-  laserWidth: 0.1
-  laserColor: {r: 0, g: 1, b: 0, a: 1}
---- !u!114 &1911521669
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1911521674}
+        m_TargetAssemblyTypeName: WeaponAction_MuzzleFlash, Assembly-CSharp
+        m_MethodName: Flash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911521663}
+        m_TargetAssemblyTypeName: GameAction_PlaySound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1911521672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1897,13 +1967,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d880c864194be884aac65cc426d89a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponAction_AmmoRequirement
+  weapon: {fileID: 0}
   currentAmmo: 100
   maxAmmo: 100
   OnShoot:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1911521668}
-        m_TargetAssemblyTypeName: WeaponAction_RaycastShoot, Assembly-CSharp
+      - m_Target: {fileID: 1911521671}
+        m_TargetAssemblyTypeName: WeaponAction_ParticleShoot, Assembly-CSharp
         m_MethodName: Shoot
         m_Mode: 1
         m_Arguments:
@@ -1917,6 +1988,55 @@ MonoBehaviour:
   OnOutOfAmmo:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1911521673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911521661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15aedc557208e3d41981317b0e95da6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponAction_RaycastShoot
+  weapon: {fileID: 0}
+  firePoint: {fileID: 978193797}
+  fireDistance: 10
+  laserPrefab: {fileID: 8740161466761690405, guid: 7249b914bc32f504a863531ab73d08fb, type: 3}
+  laserLifespan: 0.1
+  laserWidth: 0.1
+  laserColor: {r: 0, g: 1, b: 0, a: 1}
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1911521663}
+        m_TargetAssemblyTypeName: GameAction_PlaySound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1911521674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911521661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cc822c202382b4e8fe523f12740450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponAction_MuzzleFlash
+  firePoint: {fileID: 978193797}
+  flashPrefab: {fileID: 8244923372317867181, guid: 850280cd7ca3622428e5e0b73db17f19, type: 3}
+  flashLifespan: 0.1
 --- !u!1 &1927237731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,12 +2360,23 @@ PrefabInstance:
       value: PlayerPawn
       objectReference: {fileID: 0}
     - target: {fileID: 7307355828079026111, guid: 8bbe1d5208dae83429870c5e8d7e50f6, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 1911521662}
+    - target: {fileID: 7307355828079026111, guid: 8bbe1d5208dae83429870c5e8d7e50f6, type: 3}
       propertyPath: controller
       value: 
       objectReference: {fileID: 1969617652}
+    - target: {fileID: 8594076658818648128, guid: 8bbe1d5208dae83429870c5e8d7e50f6, type: 3}
+      propertyPath: m_Radius
+      value: 0.35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1324531323530096403, guid: 8bbe1d5208dae83429870c5e8d7e50f6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1911521666}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bbe1d5208dae83429870c5e8d7e50f6, type: 3}
 --- !u!1660057539 &9223372036854775807
@@ -2260,5 +2391,3 @@ SceneRoots:
   - {fileID: 1441579162}
   - {fileID: 866202022}
   - {fileID: 577706016}
-  - {fileID: 1911521666}
-  - {fileID: 1021355246}

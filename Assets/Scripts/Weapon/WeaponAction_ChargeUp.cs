@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponAction_ChargeUp : MonoBehaviour
+public class WeaponAction_ChargeUp : WeaponAction
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

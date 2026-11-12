@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponActionLobGrenade : MonoBehaviour
+public class WeaponActionLobGrenade : WeaponAction
 {
     public GameObject grenadeToLob;
     

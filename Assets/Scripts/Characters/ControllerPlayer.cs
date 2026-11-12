@@ -36,6 +36,30 @@ public class ControllerPlayer : Controller
 
         // Rotate Camera
         RotateCamera();
+
+        //Handle shooting
+        InputAction attackAction = InputSystem.actions.FindAction("Attack1");
+        InputAction secondaryAttackAction = InputSystem.actions.FindAction("Attack2");
+        if (attackAction.WasPressedThisFrame())
+        {
+            pawn.weapon.PullTrigger(0);
+        }
+
+        if (secondaryAttackAction.WasPressedThisFrame())
+        {
+            pawn.weapon.PullTrigger(1);
+        }
+        if (attackAction.WasReleasedThisFrame())
+        {
+            pawn.weapon.ReleaseTrigger(0);
+        }
+
+        if (secondaryAttackAction.WasReleasedThisFrame())
+        {
+            pawn.weapon.ReleaseTrigger(1);
+        }
+
+
     }
 
     protected virtual void RotateCamera()

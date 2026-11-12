@@ -16,12 +16,22 @@ public class TestWeapon : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            weaponToTest.PullTrigger();
+            weaponToTest.PullTrigger(0);
         }
         if (Keyboard.current.spaceKey.wasReleasedThisFrame)
         {
-            weaponToTest.ReleaseTrigger();
+            weaponToTest.ReleaseTrigger(0);
         }
+
+        if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            weaponToTest.PullTrigger(1);
+        }
+        if (Keyboard.current.cKey.wasReleasedThisFrame)
+        {
+            weaponToTest.ReleaseTrigger(1);
+        }
+
 
     }
 }
