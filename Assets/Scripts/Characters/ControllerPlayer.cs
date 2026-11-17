@@ -42,21 +42,33 @@ public class ControllerPlayer : Controller
         InputAction secondaryAttackAction = InputSystem.actions.FindAction("Attack2");
         if (attackAction.WasPressedThisFrame())
         {
-            pawn.weapon.PullTrigger(0);
+            if (pawn != null && pawn.weapon != null)
+            {
+                pawn.weapon.PullTrigger(0);
+            }
         }
 
         if (secondaryAttackAction.WasPressedThisFrame())
         {
-            pawn.weapon.PullTrigger(1);
+            if (pawn != null && pawn.weapon != null)
+            {
+                pawn.weapon.PullTrigger(1);
+            }
         }
         if (attackAction.WasReleasedThisFrame())
         {
-            pawn.weapon.ReleaseTrigger(0);
+            if (pawn != null && pawn.weapon != null)
+            {
+                pawn.weapon.ReleaseTrigger(0);
+            }
         }
 
         if (secondaryAttackAction.WasReleasedThisFrame())
         {
-            pawn.weapon.ReleaseTrigger(1);
+            if (pawn != null && pawn.weapon != null)
+            {
+                pawn.weapon.ReleaseTrigger(1);
+            }
         }
 
 

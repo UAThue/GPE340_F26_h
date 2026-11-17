@@ -7,6 +7,10 @@ public class Weapon : MonoBehaviour
     public float damageDone = 1;
     public float shotsPerSecond = 2;
     public List<Attack> attacks;
+    public Transform RHPoint;
+    public Transform LHPoint;
+    public Transform RHHint;
+    public Transform LHHint;
 
     public void PullTrigger(int attackNumber = 0 )
     {

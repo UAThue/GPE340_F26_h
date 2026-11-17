@@ -7,6 +7,8 @@ public abstract class Pawn : MonoBehaviour
     public float rotationSpeed;
     public Weapon weapon;
 
+    public abstract void EquipWeapon(Weapon weaponToEquip);
+    public abstract void UnequipWeapon(); 
     public abstract void Move(Vector3 moveVector);
     public abstract void Rotate(float direction);
     public virtual void RotateToLookAt(Vector3 targetPoint)
