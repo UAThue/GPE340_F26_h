@@ -11,8 +11,12 @@ public class Weapon : MonoBehaviour
     public Transform LHPoint;
     public Transform RHHint;
     public Transform LHHint;
+    [Tooltip("How accurate the weapon is. 1 is perfect. 0 is worst possible.")]
+    public float accuracy;
+    [Tooltip("The worst possible inaccurate shot is this many degrees off target.")]
+    public float maxAccuracyRotation;
 
-    public void PullTrigger(int attackNumber = 0 )
+    public void PullTrigger(int attackNumber = 0)
     {
         if (attackNumber < attacks.Count)
         {
@@ -42,6 +46,18 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public virtual float GetAccuracyRotationDegrees()
+    {
+        // Find out what percentage of our maxAccuracyRotation to miss by
+        float accuracyDeltaPercentage = Random.Range(0, 1-accuracy);
+
+        float accuracyDeltaDegrees = Mathf.Lerp(-maxAccuracyRotation, maxAccuracyRotation, accuracyDeltaPercentage);
+        Debug.Log("We miss by " + accuracyDeltaDegrees + "degrees");
+
+        return accuracyDeltaDegrees;
+
     }
 
 

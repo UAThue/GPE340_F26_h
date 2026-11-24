@@ -23,6 +23,11 @@ public class WeaponAction_ParticleShoot : WeaponAction
 
     public void Shoot()
     {
+        // Find the direction to shoot based on accuracy
+        Vector3 fireDirection = firePoint.forward;
+        Quaternion accuracyFireDelta = Quaternion.Euler(0, weapon.GetAccuracyRotationDegrees(), 0);
+        fireDirection = accuracyFireDelta * fireDirection;
+
         // Instantiate a bullet
         GameObject bulletObject = Instantiate<GameObject>(bulletPrefab, firePoint.position, firePoint.rotation);
 
@@ -38,7 +43,7 @@ public class WeaponAction_ParticleShoot : WeaponAction
         if (bulletPhysics != null)
         {
             bulletPhysics.useGravity = false;
-            bulletPhysics.AddForce(firePoint.forward * shootForce);
+            bulletPhysics.AddForce(fireDirection * shootForce);
         }
 
         // Destroy it after a given time

@@ -26,15 +26,20 @@ public class WeaponAction_RaycastShoot : WeaponAction
 
     public void Shoot()
     {
+        // Find the direction to shoot based on accuracy
+        Vector3 fireDirection = firePoint.forward;
+        Quaternion accuracyFireDelta = Quaternion.Euler(0, weapon.GetAccuracyRotationDegrees(), 0);
+        fireDirection = accuracyFireDelta * fireDirection;
+
         // Create a variable to hold the laser's endpoint
-        Vector3 laserEndpoint = firePoint.position + (firePoint.forward * fireDistance);
+        Vector3 laserEndpoint = firePoint.position + (fireDirection * fireDistance);
 
         // Raycast in the direction of the firepoint for "distance" meters
         RaycastHit hit;
 
         Ray rayToCast = new Ray();
         rayToCast.origin = firePoint.position;
-        rayToCast.direction = firePoint.forward;
+        rayToCast.direction = fireDirection;
 
         // If that raycast hits something
         if (Physics.Raycast(rayToCast, out hit, fireDistance))

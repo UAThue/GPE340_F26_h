@@ -8,6 +8,8 @@ public class WeaponAction_AutomaticFire : WeaponAction
 
     public void Update()
     {
+        if (GameManager.instance.isPaused) { return; }
+
         // Are we shooting?
         if (isShooting)
         {

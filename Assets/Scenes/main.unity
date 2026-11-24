@@ -880,8 +880,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ControllerAI
   pawn: {fileID: 1441579163}
   agent: {fileID: 0}
-  targetTransform: {fileID: 570180498}
+  targetTransform: {fileID: 0}
   stoppingDistance: 1
+  shootingDistance: 10
+  startingWeapons:
+  - {fileID: 2519710212738192710, guid: 0aeffc6b34e44924292b8ef68bab976d, type: 3}
 --- !u!4 &866202022
 Transform:
   m_ObjectHideFlags: 0
@@ -1321,6 +1324,58 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156224520}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1234401311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1234401313}
+  - component: {fileID: 1234401312}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1234401312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234401311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57be32a05f147d0419648b258762ab2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  isPaused: 0
+  waves:
+  - enemiesToSpawn:
+    - {fileID: 7307355828079026111, guid: 8bbe1d5208dae83429870c5e8d7e50f6, type: 3}
+  - enemiesToSpawn: []
+  - enemiesToSpawn: []
+  - enemiesToSpawn: []
+  - enemiesToSpawn: []
+--- !u!4 &1234401313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234401311}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.84103, y: -0.146, z: -0.81167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1441579162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1922,3 +1977,4 @@ SceneRoots:
   - {fileID: 866202022}
   - {fileID: 577706016}
   - {fileID: 5605828061433968997}
+  - {fileID: 1234401313}

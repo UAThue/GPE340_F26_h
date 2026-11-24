@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections.Generic;
 
 public class ControllerAI : Controller
 {
@@ -7,7 +8,9 @@ public class ControllerAI : Controller
     [HideInInspector] public NavMeshAgent agent;
     public Transform targetTransform;
     public float stoppingDistance = 1.0f;
+    public float shootingDistance = 5.0f;
     private Vector3 desiredVelocity = Vector3.zero;
+    public List<Weapon> startingWeapons;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +19,8 @@ public class ControllerAI : Controller
         {
             Possess(pawn);
         }
+
+        EquipStartingWeapon();
     }
 
     // Update is called once per frame
@@ -32,9 +37,71 @@ public class ControllerAI : Controller
             return;
         }
 
-        // Seek out the target's position
-        Seek(targetTransform.position);        
+        // if this object has a target
+        if (this.HasTarget())
+        {
+            // If the target is in range
+            float distanceToTarget = Vector3.Distance(targetTransform.position, pawn.transform.position);
+            if (distanceToTarget < shootingDistance)
+            {
+                // Stop moving
+                agent.isStopped = true;
+
+                // Keep rotating to look at the player / aim
+                pawn.RotateToLookAt(targetTransform.position);
+
+                // And shoot
+                pawn.weapon.PullTrigger();
+            }
+            else
+            {
+                // Otherwise 
+                // Stop shooting
+                pawn.weapon.ReleaseTrigger();
+
+                // Seek out the target's position
+                // Stop moving
+                agent.isStopped = false;
+                Seek(targetTransform.position);               
+            }
+
+        } else
+        {
+            TargetPlayer();
+        }
     }
+
+    public void EquipStartingWeapon()
+    {
+        if (startingWeapons.Count > 0)
+        {
+            Weapon randomWeapon = startingWeapons[Random.Range(0, startingWeapons.Count)];
+            pawn.EquipWeapon(randomWeapon);
+        }
+    }
+
+    public void TargetPlayer()
+    {
+        // Find the player
+        ControllerPlayer playerController;
+        playerController = FindAnyObjectByType<ControllerPlayer>();
+
+        // Target that player
+        targetTransform = playerController.pawn.transform;
+    }
+
+    public bool HasTarget()
+    {
+        if (targetTransform != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
     public void Seek( Vector3 targetPoint )
     {

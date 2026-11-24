@@ -145,6 +145,8 @@ MonoBehaviour:
   LHPoint: {fileID: 1746590163460546757}
   RHHint: {fileID: 8778237150915451162}
   LHHint: {fileID: 3621068010576939687}
+  accuracy: 0
+  maxAccuracyRotation: 45
 --- !u!114 &7752468975113905467
 MonoBehaviour:
   m_ObjectHideFlags: 0
